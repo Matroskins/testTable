@@ -8,22 +8,22 @@ class TableRowContent extends Component {
     autobind(this);
   }
 
-  handleDeleteRow() {
+  deleteRow() {
     const { id, onDelete } = this.props;
     onDelete(id);
   }
-  handleEditRow() {
+  editRow() {
     const { id, onEdit } = this.props;
     onEdit(id);
   }
   render() {
-    const { handleDeleteRow, handleEditRow } = this;
+    const { deleteRow, editRow } = this;
     const {data} = this.props
     return (
       <TableRowView
         data={data}
-        onEdit={handleEditRow}
-        onDelete={handleDeleteRow}
+        onEdit={editRow}
+        onDelete={deleteRow}
       />
     );
   }

@@ -20,7 +20,7 @@ class Main extends Component {
       return { isShowForm: !prevState.isShowForm };
     });
   }
-  handleEditClient(id) {
+  editClient(id) {
     const {isShowForm} = this.state
     this.setState((prevState, props) => {
       const tableContent = JSON.parse(localStorage.getItem("tableContent"));
@@ -31,7 +31,7 @@ class Main extends Component {
     }
   }
 
-  handleChangeClients(newClients){
+  changeClients(newClients){
     localStorage.setItem("tableContent", JSON.stringify(newClients));
   }
 
@@ -40,9 +40,9 @@ class Main extends Component {
     return (
       <MainView
         isShowForm={isShowForm}
-        handleChangeClients={this.handleChangeClients}
+        changeClients={this.changeClients}
         editableClient={editableClient}
-        onEditClient={this.handleEditClient}
+        onEditClient={this.editClient}
         onToggleFormShow={this.toggleFormShow}
       />
     );

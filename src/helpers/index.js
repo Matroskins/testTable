@@ -28,13 +28,20 @@ export const getClientFormLabel = key => {
 export const getUniqueId = (data: Array<T>) =>
   Math.max(...data.map(objData => objData.id)) + 1;
 
+export const isContainObj = (container, smallObj) =>
+  Object.keys(smallObj).reduce((isConsist, key) => {
+    if (isConsist) {
+      return smallObj[key] === container[key];
+    }
+    return isConsist;
+  }, true);
+
 export const compareArrays = (array1, array2) =>
   JSON.stringify(array1) === JSON.stringify(array2);
 
 export const isNull = obj => obj === null && typeof obj === "object";
 
 const columnsAliases = key => {
-  debugger;
   switch (key) {
     case "name":
       return "Клиент";
@@ -51,11 +58,9 @@ const columnsAliases = key => {
     case "visitedNum":
       return "Количество посещений";
     case "isActive":
-      return "Активный абонемент"
+      return "Активный абонемент";
     default:
       return key;
   }
 };
-export const getColumnsAliases = (keys) => keys.map(key => columnsAliases(key))
-
-
+export const getColumnsAliases = keys => keys.map(key => columnsAliases(key));

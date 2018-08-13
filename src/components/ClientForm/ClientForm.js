@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import autobind from "react-auto-bind";
-import { Client, getClientFormLabel, getUniqueId, isNull } from "helpers";
+import { Client, getClientFormLabel, getUniqueId, isNull, isContainObj } from "helpers";
 import ClientFormView from "./View/ClientForm";
 
 class ClientForm extends Component {
@@ -21,11 +21,21 @@ class ClientForm extends Component {
       this.setState({ id, name, email, phone });
     }
   }
-  handleChange(e) {
+  componentDidUpdate (prevProps, prevState) {
+    const { editableClient } = this.props;
+    if(!isNull(editableClient)){
+      if(!isContainObj(editableClient, prevState)){
+        const { id, name, email, phone } = editableClient;
+        this.setState({ id, name, email, phone });
+      }
+    }
+  }
+  
+  onChange(e) {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value });
   }
-  handleClearRows() {
+  clearRows() {
     this.setState({
       id: null,
       name: "",
@@ -33,10 +43,10 @@ class ClientForm extends Component {
       phone: ""
     });
   }
-  handleSave(e) {
+  onSave(e) {
     e.preventDefault();
     const { ...clientForm } = this.state;
-    const { onSaveClients, onToggleFormShow } = this.props;
+    const { onSaveClient, onToggleFormShow } = this.props;
     const clients = JSON.parse(localStorage.getItem("tableContent"));
     if (!isNull(clientForm.id)) {
       const editClients = clients.map(client => {
@@ -45,15 +55,15 @@ class ClientForm extends Component {
         }
         return client;
       });
-      onSaveClients(editClients);
+      onSaveClient(editClients);
     } else {
       const { id, ...clientFormRows } = clientForm;
-      onSaveClients([
+      onSaveClient([
         { ...new Client(getUniqueId(clients)), ...clientFormRows },
         ...clients
       ]);
     }
-    this.handleClearRows()
+    this.clearRows()
     onToggleFormShow();
   }
   render() {
@@ -70,12 +80,11 @@ class ClientForm extends Component {
       ],
       []
     );
-    debugger;
     return (
       <ClientFormView
         formRows={formRows}
-        onChange={this.handleChange}
-        onSave={this.handleSave}
+        onChange={this.onChange}
+        onSave={this.onSave}
       />
     );
   }

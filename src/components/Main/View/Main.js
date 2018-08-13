@@ -8,12 +8,12 @@ const Container = styled.div``
 const Title = styled.div``
 const AddClient = styled.button``
 
-const Main = ({ isShowForm, handleChangeClients, editableClient, onEditClient, onToggleFormShow }) => {
+const Main = ({ isShowForm, changeClients, editableClient, onEditClient, onToggleFormShow }) => {
     return (
         <Container>
             <Title>Клиенты</Title>
             <AddClient onClick={onToggleFormShow}>Добавить клиента</AddClient>
-            {isShowForm && <ClientForm onSaveClients={handleChangeClients} editableClient={editableClient} onToggleFormShow={onToggleFormShow} />}
+            {isShowForm && <ClientForm onSaveClient={changeClients} editableClient={editableClient} onToggleFormShow={onToggleFormShow} />}
             <ClientTable onEditClient={onEditClient} />
         </Container>
     )

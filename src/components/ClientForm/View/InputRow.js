@@ -1,7 +1,4 @@
 import React from "react";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 
 const InputRow = ({ value, onChange, name, id, label }) => {
@@ -23,8 +20,3 @@ const InputRow = ({ value, onChange, name, id, label }) => {
 };
 
 export default InputRow;
-
- /* <FormControl>
-      <InputLabel htmlFor={id}>{label}</InputLabel>
-      <Input id={id}  value={value} onChange={onChange} />
-    </FormControl> */

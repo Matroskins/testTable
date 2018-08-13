@@ -28,7 +28,7 @@ class ClientTable extends Component {
     }
   }
 
-  handleDeleteClient(id) {
+  deleteClient(id) {
     const {tableContent} = this.state
     const newTableContent = tableContent.filter(client => client.id !== id)
     localStorage.setItem("tableContent", JSON.stringify(newTableContent));
@@ -36,7 +36,7 @@ class ClientTable extends Component {
   }
 
   render() {
-    const {onEditClient, tableColumns} = this.props
+    const {onEditClient} = this.props
     const { tableContent, isAdded } = this.state;
     const {id, ...allColumns} = new Client(0) 
     const columnsAliases = ["", ...Object.keys(allColumns)]
@@ -44,12 +44,11 @@ class ClientTable extends Component {
       tableColumns: getColumnsAliases(columnsAliases),
       tableContent
     };
-    debugger;
     return isAdded ? (
       <ClientTableView
         tableData={tableDataWithTitles}
         onEdit={onEditClient}
-        onDelete={this.handleDeleteClient}
+        onDelete={this.deleteClient}
       />
     ) : (
       <div />
