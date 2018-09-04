@@ -4,9 +4,20 @@ import styled from 'styled-components'
 import ClientTable from 'components/ClientTable/ClientTable'
 import ClientForm from 'components/ClientForm/ClientForm'
 
-const Container = styled.div``
+const Container = styled.div`
+    background-color: #f7f7f7;
+    padding: 15px;
+`
 const Title = styled.div``
-const AddClient = styled.button``
+const AddClient = styled.button`
+    display: flex;
+    background-color: #f7f7f7;
+    outline: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    border:none;
+`
 
 const Main = ({ isShowForm, changeClients, editableClient, onEditClient, onToggleFormShow }) => {
     return (

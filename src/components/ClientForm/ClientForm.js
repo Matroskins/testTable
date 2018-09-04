@@ -25,7 +25,6 @@ class ClientForm extends Component {
     const { editableClient } = this.props;
     if(!isNull(editableClient) && !Object.is(prevProps.editableClient, editableClient)){
       if(!isContainObj(editableClient, prevState)){
-        debugger;
         const { id, name, email, phone } = editableClient;
         this.setState({ id, name, email, phone });
       }

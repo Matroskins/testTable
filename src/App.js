@@ -10,8 +10,8 @@ class App extends Component {
       {
         id: 111,
         name: "Ivan",
-        email: "answear@mail.ru",
         phone: "+33333333",
+        email: "answear@mail.ru",
         lastVisit: '',
         paySumm: '',
         visitedNum: '',
@@ -20,8 +20,8 @@ class App extends Component {
       {
         id: 222,
         name: "Vi",
-        email: "Vit@mail.ru",
         phone: "+666666",
+        email: "Vit@mail.ru",
         lastVisit: '',
         paySumm: '',
         visitedNum: '',
