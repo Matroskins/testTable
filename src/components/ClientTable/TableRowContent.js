@@ -18,14 +18,8 @@ class TableRowContent extends Component {
   }
   render() {
     const { deleteRow, editRow } = this;
-    const {data} = this.props
-    return (
-      <TableRowView
-        data={data}
-        onEdit={editRow}
-        onDelete={deleteRow}
-      />
-    );
+    const { data } = this.props;
+    return <TableRowView data={data} onEdit={editRow} onDelete={deleteRow} />;
   }
 }
 

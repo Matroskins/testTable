@@ -9,8 +9,8 @@
     "cross-env": "^5.2.0",
     "material": "^0.3.0",
     "react": "^16.4.2",
-    "react-addons-css-transition-group": "^15.6.2",
     "react-auto-bind": "^0.4.2",
+    "react-collapse": "^4.0.3",
     "react-dom": "^16.4.2",
     "react-motion": "^0.5.2",
     "react-scripts": "1.1.4",
@@ -21,9 +21,20 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "eslint-check": "eslint --help",
+    "precommit": "lint-staged",
     "flow": "flow"
   },
+  "lint-staged": {
+    "src/**/*.{js, jsx, json, css": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "devDependencies": {
-    "flow-bin": "^0.78.0"
+    "eslint": "^5.5.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "prettier": "^1.14.2"
   }
 }

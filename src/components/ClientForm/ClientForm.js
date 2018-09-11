@@ -68,6 +68,7 @@ class ClientForm extends Component {
   }
   render() {
     const { id, ...clientFormRows } = this.state;
+    const {isShowForm} = this.props
     const formRows = Object.keys(clientFormRows).reduce(
       (formatedArray, key) => [
         ...formatedArray,
@@ -82,6 +83,7 @@ class ClientForm extends Component {
     );
     return (
       <ClientFormView
+        isShowForm={isShowForm}
         formRows={formRows}
         onChange={this.onChange}
         onSave={this.onSave}

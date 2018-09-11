@@ -1,15 +1,6 @@
 import React from "react";
-import styled from 'styled-components';
 import TextField from "@material-ui/core/TextField";
 
-const TextFieldStyled = styled(TextField)`
-  background: white; 
-  border-radius: 15px;
-`
-const inputStyle = {
-  borderRadius: 15,
-  backgroundColor: 'white',
-}
 const InputRow = ({ value, inputHeight, onChange, name, id, label }) => {
   return (
     <TextField

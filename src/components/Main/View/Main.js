@@ -24,7 +24,7 @@ const Main = ({ isShowForm, changeClients, editableClient, onEditClient, onToggl
         <Container>
             <Title>Клиенты</Title>
             <AddClient onClick={onToggleFormShow}>Добавить клиента</AddClient>
-            {isShowForm && <ClientForm onSaveClient={changeClients} editableClient={editableClient} onToggleFormShow={onToggleFormShow} />}
+            <ClientForm isShowForm={isShowForm} onSaveClient={changeClients} editableClient={editableClient} onToggleFormShow={onToggleFormShow} />
             <ClientTable onEditClient={onEditClient} />
         </Container>
     )
