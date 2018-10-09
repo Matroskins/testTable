@@ -1,11 +1,18 @@
+// @flow
+
 import React, { Component } from "react";
 import autobind from "react-auto-bind";
-import {isNull} from 'helpers'
+import { isNull } from "helpers";
+import type { clientType } from "helpers";
 import MainView from "./View/Main";
 
-class Main extends Component {
-  constructor(props) {
-    super(props);
+type stateType = {
+  editableClient: ?clientType,
+  isShowForm: boolean
+};
+class Main extends Component<any, stateType> {
+  constructor() {
+    super();
     this.state = {
       editableClient: null,
       isShowForm: false
@@ -13,25 +20,29 @@ class Main extends Component {
     autobind(this);
   }
   toggleFormShow() {
-    this.setState(prevState => {
-      if(prevState.isShowForm && !isNull(prevState.editableClient)){
-        return { isShowForm: !prevState.isShowForm, editableClient: null }
+    this.setState((prevState: stateType) => {
+      if (prevState.isShowForm && !isNull(prevState.editableClient)) {
+        return { isShowForm: !prevState.isShowForm, editableClient: null };
       }
       return { isShowForm: !prevState.isShowForm };
     });
   }
-  editClient(id) {
-    const {isShowForm} = this.state
-    this.setState((prevState, props) => {
-      const tableContent = JSON.parse(localStorage.getItem("tableContent"));
-      return { editableClient: tableContent.find(client => client.id === id) };
-    });
-    if(!isShowForm){
+  editClient(id: number) {
+    const { isShowForm } = this.state;
+    const tableContentlocalSt = localStorage.getItem("tableContent");
+    const tableContent = tableContentlocalSt
+      ? JSON.parse(tableContentlocalSt)
+      : [];
+    const editableClient = tableContent.find(client => client.id === id);
+
+    if (!isShowForm) {
       this.toggleFormShow();
     }
+    this.setState({
+      editableClient
+    });
   }
-
-  changeClients(newClients){
+  changeClients(newClients: Array<clientType>) {
     localStorage.setItem("tableContent", JSON.stringify(newClients));
   }
 

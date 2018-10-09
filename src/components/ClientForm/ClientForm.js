@@ -1,6 +1,14 @@
+// @flow
+
 import React, { Component } from "react";
 import autobind from "react-auto-bind";
-import { Client, getClientFormLabel, getUniqueId, isNull, isContainObj } from "helpers";
+import {
+  Client,
+  getClientFormLabel,
+  getUniqueId,
+  isNull,
+  isContainObj
+} from "helpers";
 import ClientFormView from "./View/ClientForm";
 
 class ClientForm extends Component {
@@ -21,16 +29,19 @@ class ClientForm extends Component {
       this.setState({ id, name, email, phone });
     }
   }
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     const { editableClient } = this.props;
-    if(!isNull(editableClient) && !Object.is(prevProps.editableClient, editableClient)){
-      if(!isContainObj(editableClient, prevState)){
+    if (
+      !isNull(editableClient) &&
+      !Object.is(prevProps.editableClient, editableClient)
+    ) {
+      if (!isContainObj(editableClient, prevState)) {
         const { id, name, email, phone } = editableClient;
         this.setState({ id, name, email, phone });
       }
     }
   }
-  
+
   onChange(e) {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value });
@@ -63,12 +74,12 @@ class ClientForm extends Component {
         ...clients
       ]);
     }
-    this.clearRows()
+    this.clearRows();
     onToggleFormShow();
   }
   render() {
     const { id, ...clientFormRows } = this.state;
-    const {isShowForm} = this.props
+    const { isShowForm } = this.props;
     const formRows = Object.keys(clientFormRows).reduce(
       (formatedArray, key) => [
         ...formatedArray,

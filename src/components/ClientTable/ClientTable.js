@@ -1,6 +1,8 @@
+// @flow
+
 import React, { Component } from "react";
 import autobind from "react-auto-bind";
-import { compareArrays, getColumnsAliases, Client } from 'helpers'
+import { compareArrays, getColumnsAliases, Client } from "helpers";
 import ClientTableView from "./View/ClientTable";
 
 class ClientTable extends Component {
@@ -14,32 +16,35 @@ class ClientTable extends Component {
   }
 
   componentDidMount() {
+    const testL = localStorage.getItem("tableContent");
     this.setState({
-      tableContent: JSON.parse(localStorage.getItem("tableContent")),
+      tableContent: JSON.parse(testL),
       isAdded: true
     });
   }
 
-  componentDidUpdate () {
-    const { tableContent } = this.state
-    const tableContentStorage = JSON.parse(localStorage.getItem("tableContent"))
-    if(!compareArrays(tableContent, tableContentStorage)){
-      this.setState({tableContent: tableContentStorage})
+  componentDidUpdate() {
+    const { tableContent } = this.state;
+    const tableContentStorage = JSON.parse(
+      localStorage.getItem("tableContent")
+    );
+    if (!compareArrays(tableContent, tableContentStorage)) {
+      this.setState({ tableContent: tableContentStorage });
     }
   }
 
-  deleteClient(id) {
-    const {tableContent} = this.state
-    const newTableContent = tableContent.filter(client => client.id !== id)
+  deleteClient(id: number) {
+    const { tableContent } = this.state;
+    const newTableContent = tableContent.filter(client => client.id !== id);
     localStorage.setItem("tableContent", JSON.stringify(newTableContent));
-    this.setState({tableContent: newTableContent})
+    this.setState({ tableContent: newTableContent });
   }
 
   render() {
-    const {onEditClient} = this.props
+    const { onEditClient } = this.props;
     const { tableContent, isAdded } = this.state;
-    const {id, ...allColumns} = new Client(0) 
-    const columnsAliases = ["", ...Object.keys(allColumns)]
+    const { id, ...allColumns } = new Client(0);
+    const columnsAliases = ["", ...Object.keys(allColumns)];
     const tableDataWithTitles = {
       tableColumns: getColumnsAliases(columnsAliases),
       tableContent

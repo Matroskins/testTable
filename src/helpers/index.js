@@ -1,7 +1,20 @@
-export const commentEmptyColumns = data =>
+// @flow
+
+export const commentEmptyColumns = (data: string) =>
   data.length === 0 ? "------" : data;
 
-export const Client = function(id) {
+export type clientType = {
+  id: number,
+  name: string,
+  email: string,
+  phone: string,
+  lastVisit: string,
+  paySumm: string,
+  visitedNum: string,
+  isActive: string
+};
+
+export const Client = function(id: number) {
   this.id = id;
   this.name = "";
   this.email = "";
@@ -12,7 +25,7 @@ export const Client = function(id) {
   this.isActive = "";
 };
 
-export const getClientFormLabel = key => {
+export const getClientFormLabel = (key: string) => {
   switch (key) {
     case "name":
       return "Имя";
@@ -25,23 +38,25 @@ export const getClientFormLabel = key => {
   }
 };
 
-export const getUniqueId = (data: Array<T>) =>
+export const getUniqueId = (data: Array<any>) =>
   Math.max(...data.map(objData => objData.id)) + 1;
 
-export const isContainObj = (container, smallObj) =>
-  Object.keys(smallObj).reduce((isConsist, key) => {
+export const isContainObj = (container: {}, smallObj: {}) =>
+  Object.keys(smallObj).reduce((isConsist: boolean, key: string) => {
     if (isConsist) {
       return smallObj[key] === container[key];
     }
     return isConsist;
   }, true);
 
-export const compareArrays = (array1, array2) =>
-  JSON.stringify(array1) === JSON.stringify(array2);
+export const compareArrays = (
+  array1: Array<any>,
+  array2: Array<any>
+): boolean => JSON.stringify(array1) === JSON.stringify(array2);
 
-export const isNull = obj => obj === null && typeof obj === "object";
+export const isNull = (obj: any) => obj === null && typeof obj === "object";
 
-const columnsAliases = key => {
+const columnsAliases = (key: ?string) => {
   switch (key) {
     case "name":
       return "Клиент";
@@ -63,4 +78,5 @@ const columnsAliases = key => {
       return key;
   }
 };
-export const getColumnsAliases = keys => keys.map(key => columnsAliases(key));
+export const getColumnsAliases = (keys: Array<?string>): Array<?string> =>
+  keys.map(key => columnsAliases(key));

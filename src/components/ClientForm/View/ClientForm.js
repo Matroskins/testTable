@@ -1,7 +1,9 @@
+// @flow
+
 import React, { Fragment } from "react";
 import styled, { css } from "styled-components";
 import { Collapse } from "react-collapse";
-import Button from "@material-ui/core/Button";
+import { Button } from "@material-ui/core";
 import ExpandIcon from "@material-ui/icons/ExpandLess";
 import InputRow from "./InputRow";
 
@@ -22,7 +24,7 @@ const Container = styled.div`
   border-bottom: 1px solid #dfdfdf;
   overflow: hidden;
   opacity: ${props => (props.isShowForm ? 1 : 0)};
-  transition:  opacity 400ms;
+  transition: opacity 400ms;
 `;
 const ButtonContainer = styled.div`
   display: flex;

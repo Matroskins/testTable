@@ -1,7 +1,46 @@
 {
-  "extends": ["react-app", "prettier"],
+  "parser": "babel-eslint",
+  "plugins": ["prettier", "react", "flowtype"],
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "prettier/react",
+    "prettier/standard",
+    "plugin:react/recommended",
+    "plugin:flowtype/recommended"
+  ],
   "rules": {
-    "prettier/prettier" : "error"
+    "prettier/prettier": "error",
+    "no-console": 1,
+    "no-unused-vars": [1, { "ignoreRestSiblings": true }],
+    "react/prop-types": [0],
+    "flowtype/require-parameter-type": [
+      2,
+      {
+        "excludeArrowFunctions": "expressionsOnly"
+      }
+    ],
+    "flowtype/use-flow-type": 2,
+    "flowtype/valid-syntax": 2,
+    "flowtype/generic-spacing": 1,
+    "flowtype/newline-after-flow-annotation": 1,
+    "flowtype/no-dupe-keys": 2,
+    "flowtype/no-existential-type": 2,
+    "flowtype/space-before-type-colon": 1
   },
-  "plugins": ["prettier"]
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    },
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  }
 }

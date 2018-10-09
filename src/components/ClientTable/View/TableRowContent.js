@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Fragment } from "react";
 import styled from "styled-components";
 import TableCell from "@material-ui/core/TableCell";
@@ -30,8 +32,16 @@ const CloseIconStyled = styled(CloseIcon)`
   max-width: 100%;
   max-height: 100%;
 `;
-console.log("das");
-const TableRowContent = ({ data, onEdit, onDelete }) => {
+
+const TableRowContent = ({
+  data,
+  onEdit,
+  onDelete
+}: {
+  data: Array<string>,
+  onEdit: () => void,
+  onDelete: () => void
+}) => {
   return (
     <TableRow>
       <TableCell>

@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from "react";
 import autobind from "react-auto-bind";
 import TableRowView from "./View/TableRowContent";
