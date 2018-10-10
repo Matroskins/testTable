@@ -3,7 +3,22 @@
 import React from "react";
 import { TextField } from "@material-ui/core";
 
-const InputRow = ({ value, inputHeight, onChange, name, id, label }) => {
+type inputRowType = {
+  value: number | string,
+  label: string,
+  id: number | string,
+  name: string,
+  inputHeight: number,
+  onChange: Function
+};
+const InputRow = ({
+  value,
+  inputHeight,
+  onChange,
+  name,
+  id,
+  label
+}: inputRowType) => {
   return (
     <TextField
       value={value}

@@ -2,6 +2,7 @@
 
 import React from "react";
 import styled, { css } from "styled-components";
+import type { clientType } from "helpers";
 import { Table } from "@material-ui/core";
 import { TableBody } from "@material-ui/core";
 import { TableHead } from "@material-ui/core";
@@ -21,14 +22,21 @@ const TableStyled = styled(Table)`
 		  display: block !important;
     `};
 `;
-
-const ClientTable = ({ tableData, onEdit, onDelete }) => (
+type ClientTableType = {
+  tableData: {
+    tableContent: Array<clientType>,
+    tableColumns: Array<string>
+  },
+  onEdit: number => void,
+  onDelete: number => void
+};
+const ClientTable = ({ tableData, onEdit, onDelete }: ClientTableType) => (
   <TableStyled>
     <TableHead>
       <TableRowHeader columnNames={tableData.tableColumns} />
     </TableHead>
     <TableBody>
-      {tableData.tableContent.map(tableRowData => {
+      {tableData.tableContent.map((tableRowData: any) => {
         const { id, ...formatData } = tableRowData;
         return (
           <TableRowContent

@@ -56,7 +56,7 @@ export const compareArrays = (
 
 export const isNull = (obj: any) => obj === null && typeof obj === "object";
 
-const columnsAliases = (key: ?string) => {
+const columnsAliases = (key: string) => {
   switch (key) {
     case "name":
       return "Клиент";
@@ -78,5 +78,5 @@ const columnsAliases = (key: ?string) => {
       return key;
   }
 };
-export const getColumnsAliases = (keys: Array<?string>): Array<?string> =>
+export const getColumnsAliases = (keys: Array<string>): Array<string> =>
   keys.map(key => columnsAliases(key));

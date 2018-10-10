@@ -3,10 +3,16 @@
 import React, { Component } from "react";
 import autobind from "react-auto-bind";
 import { compareArrays, getColumnsAliases, Client } from "helpers";
+import type { clientType } from "helpers";
 import ClientTableView from "./View/ClientTable";
 
-class ClientTable extends Component {
-  constructor(props) {
+type stateType = {
+  tableContent: Array<clientType>,
+  isAdded: boolean
+};
+type propsType = { onEditClient: number => void };
+class ClientTable extends Component<propsType, stateType> {
+  constructor(props: propsType) {
     super(props);
     this.state = {
       tableContent: [],
@@ -16,18 +22,16 @@ class ClientTable extends Component {
   }
 
   componentDidMount() {
-    const testL = localStorage.getItem("tableContent");
     this.setState({
-      tableContent: JSON.parse(testL),
+      tableContent: JSON.parse(localStorage.getItem("tableContent") || "{}"),
       isAdded: true
     });
   }
 
   componentDidUpdate() {
     const { tableContent } = this.state;
-    const tableContentStorage = JSON.parse(
-      localStorage.getItem("tableContent")
-    );
+    const tableContentStorage =
+      JSON.parse(localStorage.getItem("tableContent") || "{}") || [];
     if (!compareArrays(tableContent, tableContentStorage)) {
       this.setState({ tableContent: tableContentStorage });
     }
@@ -35,7 +39,10 @@ class ClientTable extends Component {
 
   deleteClient(id: number) {
     const { tableContent } = this.state;
-    const newTableContent = tableContent.filter(client => client.id !== id);
+    const newTableContent =
+      tableContent.length > 0
+        ? tableContent.filter(client => client.id !== id)
+        : [];
     localStorage.setItem("tableContent", JSON.stringify(newTableContent));
     this.setState({ tableContent: newTableContent });
   }

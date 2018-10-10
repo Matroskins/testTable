@@ -2,10 +2,17 @@
 
 import React, { Component } from "react";
 import autobind from "react-auto-bind";
+import type { clientTypeRow } from "helpers/types.js";
 import TableRowView from "./View/TableRowContent";
 
-class TableRowContent extends Component {
-  constructor(props) {
+type tableRowContentType = {
+  data: clientTypeRow,
+  id: number,
+  onEdit: number => void,
+  onDelete: number => void
+};
+class TableRowContent extends Component<tableRowContentType, {}> {
+  constructor(props: tableRowContentType) {
     super(props);
     autobind(this);
   }

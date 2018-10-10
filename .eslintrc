@@ -11,7 +11,7 @@
   ],
   "rules": {
     "prettier/prettier": "error",
-    "no-console": 1,
+    "no-console": 2,
     "no-unused-vars": [1, { "ignoreRestSiblings": true }],
     "react/prop-types": [0],
     "flowtype/require-parameter-type": [
@@ -22,11 +22,11 @@
     ],
     "flowtype/use-flow-type": 2,
     "flowtype/valid-syntax": 2,
-    "flowtype/generic-spacing": 1,
-    "flowtype/newline-after-flow-annotation": 1,
+    "flowtype/generic-spacing": 2,
+    "flowtype/newline-after-flow-annotation": 2,
     "flowtype/no-dupe-keys": 2,
     "flowtype/no-existential-type": 2,
-    "flowtype/space-before-type-colon": 1
+    "flowtype/space-before-type-colon": 2
   },
   "settings": {
     "flowtype": {

@@ -10,7 +10,7 @@ type stateType = {
   editableClient: ?clientType,
   isShowForm: boolean
 };
-class Main extends Component<any, stateType> {
+class Main extends Component<{}, stateType> {
   constructor() {
     super();
     this.state = {

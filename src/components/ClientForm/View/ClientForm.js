@@ -1,75 +1,65 @@
 // @flow
 
 import React, { Fragment } from "react";
-import styled, { css } from "styled-components";
 import { Collapse } from "react-collapse";
 import { Button } from "@material-ui/core";
 import ExpandIcon from "@material-ui/icons/ExpandLess";
+// import type { clientTypeRow } from "helpers/types";
+import type { clientType } from "helpers";
 import InputRow from "./InputRow";
+import {
+  Container,
+  FormStyled,
+  EvenContainer,
+  inputHeight,
+  UnevenContainer,
+  ButtonContainer,
+  ExpandGroup,
+  ExpandContainer
+} from "./style";
 
-const media = {
-  minSize: (...args) => css`
-    @media (max-width: 720px) {
-      ${css(...args)};
-    }
-  `,
-  minButton: (...args) => css`
-    @media (max-width: 720px) {
-      ${css(...args)};
-    }
-  `
+type rowType = {
+  id: number | string,
+  value: string | number,
+  name: string,
+  label: string
+};
+type clientFormProps = {
+  isShowForm: boolean,
+  formRows: Array<rowType>,
+  onChange: (SyntheticInputEvent<any>) => void,
+  onSave: (SyntheticEvent<any>) => void
 };
 
-const Container = styled.div`
-  border-bottom: 1px solid #dfdfdf;
-  overflow: hidden;
-  opacity: ${props => (props.isShowForm ? 1 : 0)};
-  transition: opacity 400ms;
-`;
-const ButtonContainer = styled.div`
-  display: flex;
-  align-items: flex-end;
-  ${media.minButton`
-        justify-content: center;
-    `};
-`;
-const EvenContainer = styled.div`
-  min-width: 100px;
-  display: inline-block;
-`;
-const UnevenContainer = styled.div`
-  min-width: 100px;
-  display: inline-block;
-`;
-const FormStyled = styled.form`
-  display: inline-grid;
-  width: 100%;
-  grid-template-columns: 60% 35%;
-  grid-column-gap: 3%;
-  grid-row-gap: 20px;
-  ${media.minSize`
-        grid-template-columns: 100%;
-    `};
-`;
-const ExpandGroup = styled.div`
-  position: relative;
-`;
-
-const ExpandContainer = styled.div`
-  float: ${props => `${props.style.float}`};
-`;
-const inputHeight = 35;
-
-const ClientFormView = ({ onSave, onChange, isShowForm, formRows }) => {
+const ClientFormView = ({
+  onSave,
+  onChange,
+  isShowForm,
+  formRows
+}: clientFormProps) => {
   return (
     <Collapse isOpened={isShowForm}>
       <Container isShowForm={isShowForm}>
         <FormStyled onSubmit={onSave}>
           <Fragment>
-            {formRows.map(({ id, value, name, label }, ind) => {
-              if (ind % 2 === 0) {
+            {formRows.map(
+              ({ id, value, name, label }: rowType, ind: number) => {
+                if (ind % 2 === 0) {
+                  return (
+                    <EvenContainer key={id}>
+                      <InputRow
+                        id={id}
+                        inputHeight={inputHeight}
+                        label={label}
+                        name={name}
+                        value={value}
+                        onChange={onChange}
+                      />
+                    </EvenContainer>
+                  );
+                }
                 return (
-                  <EvenContainer key={id}>
+                  <UnevenContainer key={id}>
                     <InputRow
                       id={id}
                       inputHeight={inputHeight}
@@ -78,22 +68,10 @@ const ClientFormView = ({ onSave, onChange, isShowForm, formRows }) => {
                       value={value}
                       onChange={onChange}
                     />
-                  </EvenContainer>
+                  </UnevenContainer>
                 );
               }
-              return (
-                <UnevenContainer key={id}>
-                  <InputRow
-                    id={id}
-                    inputHeight={inputHeight}
-                    label={label}
-                    name={name}
-                    value={value}
-                    onChange={onChange}
-                  />
-                </UnevenContainer>
-              );
-            })}
+            )}
           </Fragment>
           <ButtonContainer>
             <Button

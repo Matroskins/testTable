@@ -7,6 +7,7 @@ import TableRow from "@material-ui/core/TableRow";
 import EditIcon from "@material-ui/icons/Edit";
 import CloseIcon from "@material-ui/icons/Close";
 import { commentEmptyColumns } from "helpers";
+import type { clientTypeRow } from "helpers/types.js";
 
 const IconButton = styled.button`
   display: flex;
@@ -38,7 +39,7 @@ const TableRowContent = ({
   onEdit,
   onDelete
 }: {
-  data: Array<string>,
+  data: clientTypeRow,
   onEdit: () => void,
   onDelete: () => void
 }) => {

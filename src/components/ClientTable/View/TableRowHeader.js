@@ -4,7 +4,7 @@ import React from "react";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 
-const TableRowHeader = ({ columnNames }: { columnNames: Array<?string> }) => {
+const TableRowHeader = ({ columnNames }: { columnNames: Array<string> }) => {
   return (
     <TableRow>
       {columnNames.map(columnName => (
