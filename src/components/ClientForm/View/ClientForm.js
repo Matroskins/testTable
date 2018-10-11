@@ -5,7 +5,6 @@ import { Collapse } from "react-collapse";
 import { Button } from "@material-ui/core";
 import ExpandIcon from "@material-ui/icons/ExpandLess";
 // import type { clientTypeRow } from "helpers/types";
-import type { clientType } from "helpers";
 import InputRow from "./InputRow";
 import {
   Container,
